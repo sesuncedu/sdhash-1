@@ -17,8 +17,9 @@
 #include <string>
 #include <fstream>
 
+#ifdef _OPENMP
 #include <omp.h>
-
+#endif
 using namespace std;
 
 namespace fs = boost::filesystem;
@@ -280,7 +281,9 @@ sdbf_set::compare_all_quiet(int32_t threshold, int32_t thread_count,bool fast) {
     out.fill('0');
     int end = this->items.size();
     if (thread_count > 0) 
+#ifdef _OPENMP
         omp_set_num_threads(thread_count);
+#endif
     if (fast) {
         #pragma omp parallel for
         for (int i = 0; i < end ; i++) {
@@ -363,7 +366,9 @@ sdbf_set::compare_to_quiet(sdbf_set *other,int32_t threshold,uint32_t sample_siz
     int tend = other->size();
     int qend = this->size();
     if (thread_count > 0) 
+#ifdef _OPENMP
         omp_set_num_threads(thread_count);
+#endif
     if (fast) {
         #pragma omp parallel for
         for (int i = 0; i < tend ; i++) {

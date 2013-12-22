@@ -1,0 +1,36 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+sdhash
+
+# automake artifacts 
+.libs
+.deps
+aclocal.m4
+autom4te.cache
+configure
+config.h
+config.h.in
+config.log
+config.status
+stamp-h1
+Makefile
+Makefile.in
+sdhash-src/version.h
+config
+.dirstamp
+libtool
+
+#xcode
+sdhash-xcode

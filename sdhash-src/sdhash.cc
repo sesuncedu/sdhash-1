@@ -17,7 +17,9 @@
 #include "boost/lexical_cast.hpp"
 
 #include <fstream>
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 
 namespace fs = boost::filesystem;
 namespace po = boost::program_options;
@@ -197,11 +199,15 @@ int main( int argc, char **argv) {
             return -1;
         }
         if (!vm.count("threads")) {
+#ifdef _OPENMP
             sdbf_sys.thread_cnt = omp_get_max_threads();
+#endif 
             if (vm.count("verbose"))
                 cerr << "sdhash: automatic thread count " << sdbf_sys.thread_cnt << endl;
         } else {
+#ifdef _OPENMP
             omp_set_num_threads(sdbf_sys.thread_cnt);
+#endif
             if (vm.count("verbose"))
                 cerr << "sdhash: thread count " << sdbf_sys.thread_cnt << endl;
         }
