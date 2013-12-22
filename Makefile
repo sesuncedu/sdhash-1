@@ -5,8 +5,12 @@ PREFIX=$(DESTDIR)/usr/local
 INSTDIR=$(PREFIX)/bin
 MANDIR=$(PREFIX)/share/man/man1
 
-
-SDBF_SRC = sdbf/sdbf_class.cc sdbf/sdbf_core.cc sdbf/map_file.cc sdbf/entr64.cc sdbf/base64.cc sdbf/bf_utils.cc sdbf/error.cc sdbf/sdbf_conf.cc sdbf/sdbf_set.cc base64/modp_b64.cc sdbf/bloom_filter.cc lz4/lz4.cc sdbf/bloom_vector.cc sdbf/blooms.pb.cc
+BASE64_SRC= base64/modp_b64.cc
+LZ4_SRC=lz4/lz4.cc
+SDBF_SRC = sdbf/sdbf_class.cc sdbf/sdbf_core.cc sdbf/map_file.cc \
+             sdbf/entr64.cc sdbf/base64.cc sdbf/bf_utils.cc sdbf/error.cc sdbf/sdbf_conf.cc \
+             sdbf/sdbf_set.cc sdbf/bloom_filter.cc  sdbf/bloom_vector.cc sdbf/blooms.pb.cc \
+	     $(BASE64_SRC) $(LZ4_SRC)
 
 SDHASH_SRC = sdhash-src/sdhash.cc sdhash-src/sdhash_threads.cc 
 
